@@ -7,8 +7,8 @@ class Walker {
 		this.x = width / 2;
 		this.y = height / 2
 
-        this.tx = 0
-        this.ty = 10000;
+        this.tx = Math.random() * 10000;
+		this.ty = Math.random() * 10000;
 
         this.speed = 4;
 	}
@@ -29,7 +29,7 @@ class Walker {
 	}
 };
 
-let walkers = [for (x of new Array(1)) new Walker()];
+let walkers = [for (x of new Array(3)) new Walker()];
 
 requestAnimationFrame(function loop() {
     ctx.save();
