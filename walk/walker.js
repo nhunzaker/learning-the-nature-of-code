@@ -1,7 +1,7 @@
 let ctx = canvas.getContext('2d');
 let width = canvas.width;
 let height = canvas.height;
-var perlin = new ClassicalNoise(Math);
+let perlin = new ClassicalNoise(Math);
 
 class Walker {
 	constructor() {
