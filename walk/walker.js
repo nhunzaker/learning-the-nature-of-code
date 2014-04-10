@@ -1,9 +1,15 @@
 let ctx = canvas.getContext('2d');
-
+let width = canvas.width;
+let height = canvas.height;
+var perlin = new ClassicalNoise(Math);
 class Walker {
 	constructor() {
-		this.x = canvas.width / 2;
-		this.y = canvas.height / 2
+		this.x = width / 2;
+		this.y = height / 2
+
+        this.tx = 0
+        this.ty = 10000;
+
         this.speed = 4;
 	}
 
@@ -15,12 +21,15 @@ class Walker {
 	}
 
 	step() {
-		this.x += Math.random() * this.speed - (this.speed * 0.5);
-		this.y += Math.random() * this.speed - (this.speed * 0.5);
+		this.x = (perlin.noise(this.tx, this.ty, 0.8) * width) + width * 0.5;
+		this.y = (perlin.noise(this.ty, this.tx, 0.8) * height) + height * 0.5;
+
+        this.tx += 0.01;
+        this.ty += 0.01;
 	}
 };
 
-let walkers = [for (x of new Array(5)) new Walker()];
+let walkers = [for (x of new Array(1)) new Walker()];
 
 requestAnimationFrame(function loop() {
     ctx.save();

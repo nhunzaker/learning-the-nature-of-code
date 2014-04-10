@@ -1,10 +1,10 @@
 class Walker {
-  float x;
-  float y;
+  float x, y;
+  float tx, ty;
 
   Walker() {
-    x = width / 2;
-    y = height / 2;
+    tx = 0;
+    ty = 10000;
   }
 
   void display() {
@@ -13,11 +13,11 @@ class Walker {
   }
 
   void step() {
-    float stepx = random(-1, 1);
-    float stepy = random(-1, 1);
+    x = map(noise(tx), 0, 1, 0, width);
+    y = map(noise(ty), 0, 1, 0, height);
 
-    x += stepx;
-    y += stepy;
+    tx += 0.01;
+    ty += 0.01;
   }
 }
 
