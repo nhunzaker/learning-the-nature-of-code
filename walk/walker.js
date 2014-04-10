@@ -2,10 +2,11 @@ let ctx = canvas.getContext('2d');
 let width = canvas.width;
 let height = canvas.height;
 var perlin = new ClassicalNoise(Math);
+
 class Walker {
 	constructor() {
 		this.x = width / 2;
-		this.y = height / 2
+		this.y = height / 2;
 
         this.tx = Math.random() * 10000;
 		this.ty = Math.random() * 10000;
