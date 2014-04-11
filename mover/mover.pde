@@ -16,13 +16,28 @@ void draw() {
 class Mover {
   PVector location;
   PVector velocity;
+  PVector acceleration;
+  
+  float topspeed;
   
   Mover() {
-    location = new PVector(random(width), random(height));
-    velocity = new PVector(random(2, -2), random(-2, 2));
+    location = new PVector(width / 2, height / 2);
+    velocity = new PVector(0, 0);
+    acceleration = new PVector(-0.001, 0.01);
+    topspeed = 5;
   }
   
   void update() {
+    PVector mouse = new PVector(mouseX, mouseY);
+    PVector dir = PVector.sub(mouse, location);
+    
+    dir.normalize();
+    dir.mult(0.5);
+
+    acceleration = dir;
+    
+    velocity.add(acceleration);
+    velocity.limit(topspeed);
     location.add(velocity);
   }
   

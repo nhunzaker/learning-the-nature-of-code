@@ -7,28 +7,56 @@ class Vector {
 	add(vector) {
 		this.x += vector.x;
 		this.y += vector.y;
+
+        return this;
 	}
 
 	sub(vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
+
+        return this;
 	}
 
 	mult(n) {
 		this.x *= n;
 		this.y *= n;
+
+        return this;
 	}
 
 	div(n) {
-		this.x /= n;
-		this.y /= n;
+		this.x = this.x / n;
+		this.y = this.y / n;
+
+        return this;
 	}
 
 	mag() {
-		return Math.sqrt(this.x * this.x, this.y * this.y);
+        let x = this.x;
+        let y = this.y;
+
+		return Math.sqrt(x * x + y * y);
 	}
 
+    limit(high) {
+        if (this.mag() > high) {
+            this.normalize();
+            this.mult(high);
+        }
+
+        return this;
+    }
+
 	normalize() {
-		this.div(this.mag() || 1);
+        var m = this.mag();
+        if (m > 0) {
+            this.div(m);
+        }
+        return this;
 	}
+
+    static sub (v1, v2) {
+        return new Vector(v1.x - v2.x, v1.y - v2.y);
+    }
 }
